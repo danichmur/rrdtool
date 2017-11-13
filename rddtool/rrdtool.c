@@ -1,19 +1,56 @@
 #include <stdio.h>
 #include <rrd.h>
 #include <malloc.h>
+#include "config_manager.h"
+#define MAX 20
+#define LEN 40
 
 void choose_command(int argc, char** argv);
 
 void create();
 void update();
 void graph();
+void get_db_list_test();
 
 char *db_path = "/home/parallels/test.rrd";
 
 int main(int argc, char** argv) {
-    choose_command(argc, argv);
+    initialize();
+    set_db_path("~/CLionProjects/");
+    get_db_list_test();
+   // choose_command(argc, argv);
+    clear();
     return 0;
 }
+
+void get_db_list_test(){
+    char **list = (char **) calloc(MAX, LEN);
+    for(int i = 0; i < MAX; i++)
+        list[i] = (char *)calloc(LEN, sizeof(char));
+
+    get_db_list(list);
+
+    int i = 0;
+    while(strcmp(list[i], "") != 0){
+        printf("%s\n", list[i++]);
+    }
+
+    for(int i = 0; i < MAX; i++)
+        free(list[i]);
+    free(list);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 void choose_command(int argc, char** argv){
     if (strcmp(argv[1], "create")==0) {
@@ -64,10 +101,10 @@ void update(){
 }
 
 void graph(){
-   // char *param_with_path[100];
-   // strcpy(param_with_path,"DEF:myspeed=");
-   // strcat(param_with_path, db_path);
-   // strcat(param_with_path, ":speed:AVERAGE");
+    // char *param_with_path[100];
+    // strcpy(param_with_path,"DEF:myspeed=");
+    // strcat(param_with_path, db_path);
+    // strcat(param_with_path, ":speed:AVERAGE");
     char ***calcpr =  malloc(sizeof(char));
     int xsize, ysize;
     double ymin, ymax;
@@ -87,4 +124,3 @@ void graph(){
                                            calcpr, &xsize, &ysize, NULL,
                                            &ymin, &ymax));
 }
-

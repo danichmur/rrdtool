@@ -4,10 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/parallels/CLionProjects/rddtool/config_manager.c" "/home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/config_manager.c.o"
-  "/home/parallels/CLionProjects/rddtool/iniparser/dictionary.c" "/home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/dictionary.c.o"
-  "/home/parallels/CLionProjects/rddtool/iniparser/iniparser.c" "/home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/iniparser.c.o"
-  "/home/parallels/CLionProjects/rddtool/rrdtool.c" "/home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/rrdtool.c.o"
+  "/home/parallels/rrdtool/rddtool/config_manager.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/config_manager.c.o"
+  "/home/parallels/rrdtool/rddtool/iniparser/dictionary.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/dictionary.c.o"
+  "/home/parallels/rrdtool/rddtool/iniparser/iniparser.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/iniparser.c.o"
+  "/home/parallels/rrdtool/rddtool/rrdtool.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/rrdtool.c.o"
+  "/home/parallels/rrdtool/rddtool/rrdtools.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/rrdtools.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

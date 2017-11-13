@@ -48,10 +48,10 @@ RM = /home/parallels/clion-2017.2.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/parallels/CLionProjects/rddtool
+CMAKE_SOURCE_DIR = /home/parallels/rrdtool/rddtool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/parallels/CLionProjects/rddtool/cmake-build-debug
+CMAKE_BINARY_DIR = /home/parallels/rrdtool/rddtool/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles /home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles /home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/parallels/CLionProjects/rddtool/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -231,6 +231,33 @@ rrdtool.c.s:
 	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtool.c.s
 .PHONY : rrdtool.c.s
 
+rrdtools.o: rrdtools.c.o
+
+.PHONY : rrdtools.o
+
+# target to build an object file
+rrdtools.c.o:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtools.c.o
+.PHONY : rrdtools.c.o
+
+rrdtools.i: rrdtools.c.i
+
+.PHONY : rrdtools.i
+
+# target to preprocess a source file
+rrdtools.c.i:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtools.c.i
+.PHONY : rrdtools.c.i
+
+rrdtools.s: rrdtools.c.s
+
+.PHONY : rrdtools.s
+
+# target to generate assembly for a file
+rrdtools.c.s:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtools.c.s
+.PHONY : rrdtools.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -252,6 +279,9 @@ help:
 	@echo "... rrdtool.o"
 	@echo "... rrdtool.i"
 	@echo "... rrdtool.s"
+	@echo "... rrdtools.o"
+	@echo "... rrdtools.i"
+	@echo "... rrdtools.s"
 .PHONY : help
 
 

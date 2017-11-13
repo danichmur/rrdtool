@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/parallels/CLionProjects/rddtool/config_manager.c
+/home/parallels/rrdtool/rddtool/config_manager.c
 config_manager.h
-/home/parallels/CLionProjects/rddtool/config_manager.h
+/home/parallels/rrdtool/rddtool/config_manager.h
 
-/home/parallels/CLionProjects/rddtool/config_manager.h
+/home/parallels/rrdtool/rddtool/config_manager.h
 iniparser/iniparser.h
-/home/parallels/CLionProjects/rddtool/iniparser/iniparser.h
+/home/parallels/rrdtool/rddtool/iniparser/iniparser.h
 stdio.h
 -
 stdlib.h
@@ -24,9 +24,9 @@ dirent.h
 stdbool.h
 -
 
-/home/parallels/CLionProjects/rddtool/iniparser/dictionary.c
+/home/parallels/rrdtool/rddtool/iniparser/dictionary.c
 dictionary.h
-/home/parallels/CLionProjects/rddtool/iniparser/dictionary.h
+/home/parallels/rrdtool/rddtool/iniparser/dictionary.h
 stdio.h
 -
 stdlib.h
@@ -36,7 +36,7 @@ string.h
 unistd.h
 -
 
-/home/parallels/CLionProjects/rddtool/iniparser/dictionary.h
+/home/parallels/rrdtool/rddtool/iniparser/dictionary.h
 stdio.h
 -
 stdlib.h
@@ -46,15 +46,15 @@ string.h
 unistd.h
 -
 
-/home/parallels/CLionProjects/rddtool/iniparser/iniparser.c
+/home/parallels/rrdtool/rddtool/iniparser/iniparser.c
 ctype.h
 -
 stdarg.h
 -
 iniparser.h
-/home/parallels/CLionProjects/rddtool/iniparser/iniparser.h
+/home/parallels/rrdtool/rddtool/iniparser/iniparser.h
 
-/home/parallels/CLionProjects/rddtool/iniparser/iniparser.h
+/home/parallels/rrdtool/rddtool/iniparser/iniparser.h
 stdio.h
 -
 stdlib.h
@@ -62,15 +62,27 @@ stdlib.h
 string.h
 -
 dictionary.h
-/home/parallels/CLionProjects/rddtool/iniparser/dictionary.h
+/home/parallels/rrdtool/rddtool/iniparser/dictionary.h
 
-/home/parallels/CLionProjects/rddtool/rrdtool.c
+/home/parallels/rrdtool/rddtool/rrdtool.c
 stdio.h
 -
-rrd.h
--
+rrdtools.h
+/home/parallels/rrdtool/rddtool/rrdtools.h
 malloc.h
 -
 config_manager.h
-/home/parallels/CLionProjects/rddtool/config_manager.h
+/home/parallels/rrdtool/rddtool/config_manager.h
+
+/home/parallels/rrdtool/rddtool/rrdtools.c
+math.h
+-
+rrdtools.h
+/home/parallels/rrdtool/rddtool/rrdtools.h
+
+/home/parallels/rrdtool/rddtool/rrdtools.h
+config_manager.h
+/home/parallels/rrdtool/rddtool/config_manager.h
+rrd.h
+-
 

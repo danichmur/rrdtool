@@ -1,5 +1,5 @@
 //
-// Created by parallels on 11/13/17.
+// Created by danichmur on 11/13/17.
 //
 
 #include "config_manager.h"
@@ -7,7 +7,6 @@
 
 dictionary  *ini;
 const char *conf_file_name = "../conf.ini";
-const char *db_path;
 
 bool check_file_rrd(const char * file_name){
     char *expansion = ".rrd";
@@ -34,7 +33,6 @@ int initialize(){
         fprintf(stderr, "cannot parse %s\n", conf_file_name);
         return -1 ;
     }
-    db_path = iniparser_getstring(ini, "config:db_path", "~/");
     return 0;
 }
 
@@ -52,8 +50,9 @@ void get_db_list(char** list){
 }
 
 const char * get_db_path(){
-    return db_path;
+    return iniparser_getstring(ini, "config:db_path", "~/");
 }
+
 void set_db_path(char * new_db_path){
     char path[80];
     if(new_db_path[0] == '~'){
@@ -65,7 +64,6 @@ void set_db_path(char * new_db_path){
         strcpy(path, new_db_path);
     }
     iniparser_set(ini, "config:db_path", path);
-    strcpy(db_path, path);
 }
 
 int clear(){

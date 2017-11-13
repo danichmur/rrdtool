@@ -17,4 +17,11 @@ CMakeFiles/rddtool.dir/rrdtool.c.o: ../config_manager.h
 CMakeFiles/rddtool.dir/rrdtool.c.o: ../iniparser/dictionary.h
 CMakeFiles/rddtool.dir/rrdtool.c.o: ../iniparser/iniparser.h
 CMakeFiles/rddtool.dir/rrdtool.c.o: ../rrdtool.c
+CMakeFiles/rddtool.dir/rrdtool.c.o: ../rrdtools.h
+
+CMakeFiles/rddtool.dir/rrdtools.c.o: ../config_manager.h
+CMakeFiles/rddtool.dir/rrdtools.c.o: ../iniparser/dictionary.h
+CMakeFiles/rddtool.dir/rrdtools.c.o: ../iniparser/iniparser.h
+CMakeFiles/rddtool.dir/rrdtools.c.o: ../rrdtools.c
+CMakeFiles/rddtool.dir/rrdtools.c.o: ../rrdtools.h
 

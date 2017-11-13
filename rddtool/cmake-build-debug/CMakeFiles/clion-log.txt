@@ -1,4 +1,4 @@
-/home/parallels/clion-2017.2.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/parallels/CLionProjects/rddtool
+/home/parallels/clion-2017.2.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/parallels/rrdtool/rddtool
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/parallels/CLionProjects/rddtool/cmake-build-debug
+-- Build files have been written to: /home/parallels/rrdtool/rddtool/cmake-build-debug

@@ -62,3 +62,18 @@ int rrdtools_remove(char *db_name){
     create_path(path, db_name);
     return remove(path);
 }
+
+int rrdtools_tune(int argc, char** argv) {
+    char path[100];
+    create_path(path, argv[RRD_NAME]);
+    argv[RRD_NAME] = path;
+    return rrd_tune(argc, argv);
+}
+
+int rrdtools_rename(char* old_name, char* new_name){
+    char old_path[100];
+    create_path(old_path, old_name);
+    char new_path[100];
+    create_path(new_path, new_name);
+    return rename(old_path, new_path);
+}

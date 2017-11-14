@@ -12,14 +12,15 @@ char *db_path = "/home/parallels/test.rrd";
 int main(int argc, char** argv) {
     initialize();
    // create();
-    rrdtools_remove("2test.rrd");
-    get_db_list_test();
-//    char *list = (char *) calloc(MAX*LEN, sizeof(char));
-//    rrdtools_info("1test.rrd", list);
-//    clear();
-//    printf("%s", list);
+//    rrdtools_remove("2test.rrd");
+    char *list = (char *) calloc(MAX*LEN, sizeof(char));
+    rrdtools_info("rename_test.rrd", list);
+    printf("%s", list);
+
+
+    clear();
 //
-//    free(list);
+    free(list);
     return 0;
 }
 

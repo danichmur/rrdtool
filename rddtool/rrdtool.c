@@ -6,23 +6,47 @@
 #define LEN 40
 
 void get_db_list_test();
-
-char *db_path = "/home/parallels/test.rrd";
+void graph();
 
 int main(int argc, char** argv) {
     initialize();
-   // create();
-//    rrdtools_remove("2test.rrd");
-    char *list = (char *) calloc(MAX*LEN, sizeof(char));
-    rrdtools_info("rename_test.rrd", list);
-    printf("%s", list);
-
-
-    clear();
+    graph();
+    printf(rrd_get_error());
+//    //create();
+//   // update();
+// char *list = (char *) calloc(MAX*LEN, sizeof(char));
+//  //  rrdtools_info("2test.rrd", list);
+// rrdtools_dump("2test.rrd", fp);
+//    printf("%s", list);
 //
-    free(list);
+//    clear();
+//    free(list);
+
+//    time_t start = 920804400;
+//    time_t end = 920809200;
+//    unsigned long step = 300;
+//    unsigned long ds_cnt;
+//    char **ds_namv = NULL;
+//    char *db_path = "2test.rrd";
+//
+//    size_t size = (end - start) / step;
+//    char *result = (char*)malloc(LEN*size*sizeof(char));
+//
+//    enum FETCH_TYPE a = CSV;
+//    rrdtools_fetch(db_path, "AVERAGE", &start, &end, &step, &ds_cnt, &ds_namv, result, a);
+//    size = (end - start) / step - 1;
+//    printf("%s\n", result);
+//
+//    free(result);
+
+
     return 0;
+
 }
+
+
+
+
 
 void get_db_list_test(){
     char **list = (char **) calloc(MAX, LEN);
@@ -84,49 +108,67 @@ void create(){
     };
     printf("Create status: %d\n", rrdtools_create(create_argc, create_argv));
 }
+
+void update(){
+    size_t update_argc = 3;
+    size_t update_params_count = 15;
+    char *update_params[] = {
+            "920804700:12345", "920805000:12357", "920805300:12363",
+            "920805600:12363", "920805900:12363", "920806200:12373",
+            "920806500:12383", "920806800:12393", "920807100:12399",
+            "920807400:12405", "920807700:12411", "920808000:12415",
+            "920808300:12420", "920808600:12422", "920808900:12423"
+    };
+    for(int i = 0; i < update_params_count; i++) {
+        char *update_argv[] = {
+                "update",
+                "/home/parallels/rrdtool/rddtool/test_db/2test.rrd",
+                update_params[i]
+        };
+
+        printf("Update status: %d\n", rrd_update(update_argc, update_argv));
+    }
+}
 //
-//void update(){
-//    size_t update_argc = 3;
-//    size_t update_params_count = 15;
-//    char *update_params[] = {
-//            "920804700:12345", "920805000:12357", "920805300:12363",
-//            "920805600:12363", "920805900:12363", "920806200:12373",
-//            "920806500:12383", "920806800:12393", "920807100:12399",
-//            "920807400:12405", "920807700:12411", "920808000:12415",
-//            "920808300:12420", "920808600:12422", "920808900:12423"
-//    };
-//    for(int i = 0; i < update_params_count; i++) {
-//        char *update_argv[] = {
-//                "update",
-//                db_path,
-//                update_params[i]
-//        };
+void graph(){
+    // char *param_with_path[100];
+    // strcpy(param_with_path,"DEF:myspeed=");
+    // strcat(param_with_path, db_path);
+    // strcat(param_with_path, ":speed:AVERAGE");
+    char ***calcpr =  malloc(sizeof(char));
+    int xsize, ysize;
+    double ymin, ymax;
+
+    int graph_argc = 8;
+    char* graph_argv[] = {
+            "graph",
+            "speed.png",
+            "--start",
+            "920804400",
+            "--end",
+            "920808000",
+            "DEF:myspeed=2test.rrd:rrrr:AVERAGE",
+            "LINE2:myspeed#FF0000"
+    };
+    printf("Graph status: %d\n", rrdools_graph(graph_argc, graph_argv,
+                                           calcpr, &xsize, &ysize,
+                                           &ymin, &ymax));
+}
+
+
+//printf("%p\n", data);
+//printf("size of data %d start %d end %d step %d ds_cnt %d\n", sizeof(data)/sizeof(rrd_value_t), start, end, step, ds_cnt);
 //
-//        printf("Update status: %d\n", rrd_update(update_argc, update_argv));
-//    }
-//}
 //
-//void graph(){
-//    // char *param_with_path[100];
-//    // strcpy(param_with_path,"DEF:myspeed=");
-//    // strcat(param_with_path, db_path);
-//    // strcat(param_with_path, ":speed:AVERAGE");
-//    char ***calcpr =  malloc(sizeof(char));
-//    int xsize, ysize;
-//    double ymin, ymax;
-//
-//    size_t graph_argc = 8;
-//    char* graph_argv[] = {
-//            "graph",
-//            "/home/parallels/speed.png",
-//            "--start",
-//            "920804400",
-//            "--end",
-//            "920808000",
-//            "DEF:myspeed=/home/parallels/test.rrd:speed:AVERAGE",
-//            "LINE2:myspeed#FF0000"
-//    };
-//    printf("Graph status: %d\n", rrd_graph(graph_argc, graph_argv,
-//                                           calcpr, &xsize, &ysize, NULL,
-//                                           &ymin, &ymax));
-//}
+//FILE *fp;
+//fp=fopen("test.txt", "w+");
+////    //create();
+////   // update();
+//// char *list = (char *) calloc(MAX*LEN, sizeof(char));
+////  //  rrdtools_info("2test.rrd", list);
+//// rrdtools_dump("2test.rrd", fp);
+////    printf("%s", list);
+////
+////    clear();
+//fclose(fp);
+////    free(list);

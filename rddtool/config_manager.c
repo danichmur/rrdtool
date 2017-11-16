@@ -53,7 +53,32 @@ const char * get_db_path(){
     return iniparser_getstring(ini, "config:db_path", "~/");
 }
 
-void set_db_path(char * new_db_path){
+const char * get_res_path(){
+    return iniparser_getstring(ini, "config:res_path", "~/");
+}
+
+static void _mkdir(const char *dir) {
+    char tmp[256];
+    char *p = NULL;
+    size_t len;
+
+    snprintf(tmp, sizeof(tmp),"%s",dir);
+    len = strlen(tmp);
+    if(tmp[len - 1] == '/')
+        tmp[len - 1] = 0;
+    for(p = tmp + 1; *p; p++) {
+        if (*p == '/') {
+            *p = 0;
+            if(access(tmp, F_OK) == -1 ) {
+                mkdir(tmp, S_IRWXU);
+            }
+            *p = '/';
+        }
+    }
+    mkdir(tmp, S_IRWXU);
+}
+
+void set_path(char * new_db_path, char * name){
     char path[80];
     if(new_db_path[0] == '~'){
         strcpy(path, getenv("HOME"));
@@ -63,7 +88,16 @@ void set_db_path(char * new_db_path){
     } else {
         strcpy(path, new_db_path);
     }
-    iniparser_set(ini, "config:db_path", path);
+    _mkdir(path);
+    iniparser_set(ini, name, path);
+}
+
+void set_db_path(char * new_db_path){
+    set_path(new_db_path, "config:db_path");
+}
+
+void set_res_path(char * new_db_path){
+    set_path(new_db_path, "config:res_path");
 }
 
 int clear(){

@@ -21,24 +21,18 @@ int main(int argc, char** argv) {
     time_t start = 920804400;
     time_t end = 920809200;
     unsigned long step = 300;
-    unsigned long ds_cnt;
-    char **ds_namv = NULL;
     char *db_path = "2ds.rrd";
 
     size_t size = (end - start) / step;
-    char *result = (char*)malloc(LEN*10*size*sizeof(char));
+  //  char *result = (char*)malloc(LEN*10*size*sizeof(char));
 
-    enum FETCH_TYPE a = CSV;
-    rrdtools_fetch(db_path, "AVERAGE", &start, &end, &step, &ds_cnt, &ds_namv, result, a);
-    printf("%s\n", result);
-    free(result);
+    enum FETCH_TYPE a = ARRAY;
+    rrdtools_fetch_in_file(db_path, "AVERAGE", &start, &end, &step, "tolik.arr", a);
+   // printf("%s\n", result);
+   // free(result);
 
     return 0;
 }
-
-
-
-
 
 void get_db_list_test(){
     char **list = (char **) calloc(MAX, LEN);
@@ -121,7 +115,6 @@ void update(){
                 update_params[i]
         };
         printf("Update status: %d\n", rrd_update(update_argc, update_argv));
-        printf(rrd_get_error());
     }
 
 }

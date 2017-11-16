@@ -102,7 +102,7 @@
 		<Unit filename="/home/parallels/rrdtool/rddtool/iniparser/iniparser.h">
 			<Option target="rddtool"/>
 		</Unit>
-		<Unit filename="/home/parallels/rrdtool/rddtool/rrdtool.c">
+		<Unit filename="/home/parallels/rrdtool/rddtool/main.c">
 			<Option target="rddtool"/>
 		</Unit>
 		<Unit filename="/home/parallels/rrdtool/rddtool/rrdtools.c">

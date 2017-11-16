@@ -57,28 +57,28 @@ include CMakeFiles/rddtool.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/rddtool.dir/flags.make
 
-CMakeFiles/rddtool.dir/rrdtool.c.o: CMakeFiles/rddtool.dir/flags.make
-CMakeFiles/rddtool.dir/rrdtool.c.o: ../rrdtool.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/rddtool.dir/rrdtool.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rddtool.dir/rrdtool.c.o   -c /home/parallels/rrdtool/rddtool/rrdtool.c
+CMakeFiles/rddtool.dir/main.c.o: CMakeFiles/rddtool.dir/flags.make
+CMakeFiles/rddtool.dir/main.c.o: ../main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/rddtool.dir/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/rddtool.dir/main.c.o   -c /home/parallels/rrdtool/rddtool/main.c
 
-CMakeFiles/rddtool.dir/rrdtool.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rddtool.dir/rrdtool.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/parallels/rrdtool/rddtool/rrdtool.c > CMakeFiles/rddtool.dir/rrdtool.c.i
+CMakeFiles/rddtool.dir/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/rddtool.dir/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/parallels/rrdtool/rddtool/main.c > CMakeFiles/rddtool.dir/main.c.i
 
-CMakeFiles/rddtool.dir/rrdtool.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rddtool.dir/rrdtool.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/parallels/rrdtool/rddtool/rrdtool.c -o CMakeFiles/rddtool.dir/rrdtool.c.s
+CMakeFiles/rddtool.dir/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/rddtool.dir/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/parallels/rrdtool/rddtool/main.c -o CMakeFiles/rddtool.dir/main.c.s
 
-CMakeFiles/rddtool.dir/rrdtool.c.o.requires:
+CMakeFiles/rddtool.dir/main.c.o.requires:
 
-.PHONY : CMakeFiles/rddtool.dir/rrdtool.c.o.requires
+.PHONY : CMakeFiles/rddtool.dir/main.c.o.requires
 
-CMakeFiles/rddtool.dir/rrdtool.c.o.provides: CMakeFiles/rddtool.dir/rrdtool.c.o.requires
-	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtool.c.o.provides.build
-.PHONY : CMakeFiles/rddtool.dir/rrdtool.c.o.provides
+CMakeFiles/rddtool.dir/main.c.o.provides: CMakeFiles/rddtool.dir/main.c.o.requires
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/main.c.o.provides.build
+.PHONY : CMakeFiles/rddtool.dir/main.c.o.provides
 
-CMakeFiles/rddtool.dir/rrdtool.c.o.provides.build: CMakeFiles/rddtool.dir/rrdtool.c.o
+CMakeFiles/rddtool.dir/main.c.o.provides.build: CMakeFiles/rddtool.dir/main.c.o
 
 
 CMakeFiles/rddtool.dir/iniparser/dictionary.c.o: CMakeFiles/rddtool.dir/flags.make
@@ -179,7 +179,7 @@ CMakeFiles/rddtool.dir/rrdtools.c.o.provides.build: CMakeFiles/rddtool.dir/rrdto
 
 # Object files for target rddtool
 rddtool_OBJECTS = \
-"CMakeFiles/rddtool.dir/rrdtool.c.o" \
+"CMakeFiles/rddtool.dir/main.c.o" \
 "CMakeFiles/rddtool.dir/iniparser/dictionary.c.o" \
 "CMakeFiles/rddtool.dir/iniparser/iniparser.c.o" \
 "CMakeFiles/rddtool.dir/config_manager.c.o" \
@@ -188,7 +188,7 @@ rddtool_OBJECTS = \
 # External object files for target rddtool
 rddtool_EXTERNAL_OBJECTS =
 
-rddtool: CMakeFiles/rddtool.dir/rrdtool.c.o
+rddtool: CMakeFiles/rddtool.dir/main.c.o
 rddtool: CMakeFiles/rddtool.dir/iniparser/dictionary.c.o
 rddtool: CMakeFiles/rddtool.dir/iniparser/iniparser.c.o
 rddtool: CMakeFiles/rddtool.dir/config_manager.c.o
@@ -204,7 +204,7 @@ CMakeFiles/rddtool.dir/build: rddtool
 
 .PHONY : CMakeFiles/rddtool.dir/build
 
-CMakeFiles/rddtool.dir/requires: CMakeFiles/rddtool.dir/rrdtool.c.o.requires
+CMakeFiles/rddtool.dir/requires: CMakeFiles/rddtool.dir/main.c.o.requires
 CMakeFiles/rddtool.dir/requires: CMakeFiles/rddtool.dir/iniparser/dictionary.c.o.requires
 CMakeFiles/rddtool.dir/requires: CMakeFiles/rddtool.dir/iniparser/iniparser.c.o.requires
 CMakeFiles/rddtool.dir/requires: CMakeFiles/rddtool.dir/config_manager.c.o.requires

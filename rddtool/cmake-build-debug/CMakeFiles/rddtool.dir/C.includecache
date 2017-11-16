@@ -23,6 +23,8 @@ dirent.h
 -
 stdbool.h
 -
+sys/stat.h
+-
 
 /home/parallels/rrdtool/rddtool/iniparser/dictionary.c
 dictionary.h
@@ -64,7 +66,7 @@ string.h
 dictionary.h
 /home/parallels/rrdtool/rddtool/iniparser/dictionary.h
 
-/home/parallels/rrdtool/rddtool/rrdtool.c
+/home/parallels/rrdtool/rddtool/main.c
 stdio.h
 -
 rrdtools.h
@@ -84,5 +86,7 @@ rrdtools.h
 config_manager.h
 /home/parallels/rrdtool/rddtool/config_manager.h
 rrd.h
+-
+stdlib.h
 -
 

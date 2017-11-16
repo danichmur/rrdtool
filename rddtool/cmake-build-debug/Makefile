@@ -204,32 +204,32 @@ iniparser/iniparser.c.s:
 	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/iniparser/iniparser.c.s
 .PHONY : iniparser/iniparser.c.s
 
-rrdtool.o: rrdtool.c.o
+main.o: main.c.o
 
-.PHONY : rrdtool.o
+.PHONY : main.o
 
 # target to build an object file
-rrdtool.c.o:
-	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtool.c.o
-.PHONY : rrdtool.c.o
+main.c.o:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/main.c.o
+.PHONY : main.c.o
 
-rrdtool.i: rrdtool.c.i
+main.i: main.c.i
 
-.PHONY : rrdtool.i
+.PHONY : main.i
 
 # target to preprocess a source file
-rrdtool.c.i:
-	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtool.c.i
-.PHONY : rrdtool.c.i
+main.c.i:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/main.c.i
+.PHONY : main.c.i
 
-rrdtool.s: rrdtool.c.s
+main.s: main.c.s
 
-.PHONY : rrdtool.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-rrdtool.c.s:
-	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/rrdtool.c.s
-.PHONY : rrdtool.c.s
+main.c.s:
+	$(MAKE) -f CMakeFiles/rddtool.dir/build.make CMakeFiles/rddtool.dir/main.c.s
+.PHONY : main.c.s
 
 rrdtools.o: rrdtools.c.o
 
@@ -276,9 +276,9 @@ help:
 	@echo "... iniparser/iniparser.o"
 	@echo "... iniparser/iniparser.i"
 	@echo "... iniparser/iniparser.s"
-	@echo "... rrdtool.o"
-	@echo "... rrdtool.i"
-	@echo "... rrdtool.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... rrdtools.o"
 	@echo "... rrdtools.i"
 	@echo "... rrdtools.s"

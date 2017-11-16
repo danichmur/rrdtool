@@ -3,7 +3,7 @@ project(rddtool)
 
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES rrdtool.c iniparser/dictionary.h iniparser/dictionary.c iniparser/iniparser.h iniparser/iniparser.c config_manager.h config_manager.c rrdtools.h rrdtools.c)
+set(SOURCE_FILES main.c iniparser/dictionary.h iniparser/dictionary.c iniparser/iniparser.h iniparser/iniparser.c config_manager.h config_manager.c rrdtools.h rrdtools.c)
 
 find_library(RRD_LIBRARY librrd.so HINTS /usr/lib/x86_64-linux-gnu)
 

@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/parallels/rrdtool/rddtool/config_manager.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/config_manager.c.o"
   "/home/parallels/rrdtool/rddtool/iniparser/dictionary.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/dictionary.c.o"
   "/home/parallels/rrdtool/rddtool/iniparser/iniparser.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/iniparser/iniparser.c.o"
-  "/home/parallels/rrdtool/rddtool/rrdtool.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/rrdtool.c.o"
+  "/home/parallels/rrdtool/rddtool/main.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/main.c.o"
   "/home/parallels/rrdtool/rddtool/rrdtools.c" "/home/parallels/rrdtool/rddtool/cmake-build-debug/CMakeFiles/rddtool.dir/rrdtools.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

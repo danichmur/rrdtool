@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/rddtool.dir/rrdtool.c.o"
+  "CMakeFiles/rddtool.dir/main.c.o"
   "CMakeFiles/rddtool.dir/iniparser/dictionary.c.o"
   "CMakeFiles/rddtool.dir/iniparser/iniparser.c.o"
   "CMakeFiles/rddtool.dir/config_manager.c.o"

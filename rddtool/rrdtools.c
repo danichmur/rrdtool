@@ -111,29 +111,65 @@ int rrdtools_rename(char* old_name, char* new_name){
 //}
 
 void fetch_to_array(char *result, rrd_value_t *data,
-                    unsigned long size, time_t start, unsigned long step){
+                    unsigned long size, time_t start,
+                    unsigned long step, char ***ds_namv, unsigned long ds_cnt){
+
     for(int i = 0; i < size; i++){
-        result += sprintf(result, "%li:%lf\n", (long) (start + step*(i+1)), data[i]);
+        result += sprintf(result, "%li",
+                          (long) (start + step * (i + 1)));
+        for(int j = 0; j < ds_cnt; j++) {
+            result += sprintf(result, ":%lf", data[i*ds_cnt + j]);
+        }
+        result += sprintf(result, "\n");
     }
 }
 
+//"result" : [
+                //«int»: [
+                            //{«name»:int},
+                            //{«name»:int}
+                //],
+                //«int»: [
+                            //{«name»:int},
+                            //{«name»:int}
+                //]
+//]
+
 void fetch_to_json(char *result, rrd_value_t *data,
-                   unsigned long size, time_t start, unsigned long step){
-    result += sprintf(result, "{\"result\": [\n");
+                   unsigned long size, time_t start,
+                   unsigned long step, char ***ds_namv, unsigned long ds_cnt){
+    result += sprintf(result, "{\"result\": [{\n");
     for(int i = 0; i < size; i++){
-        if(i != 0)
+        if(i != 0) {
             result += sprintf(result, ",\n");
-        result += sprintf(result, "{\"%li\":\"%lf\"}", (long) (start + step*(i+1)), data[i]);
+        }
+        result += sprintf(result,"\"%li\":[",(long) (start + step*(i+1)));
+        for(int j = 0; j < ds_cnt; j++) {
+            if(j != 0) {
+                result += sprintf(result, ",");
+            }
+            result += sprintf(result, "{\"%s\":\"%lf\"}", (*ds_namv)[j], data[i*ds_cnt + j]);
+        }
+        result += sprintf(result, "]");
     }
-    result += sprintf(result,"\n]}");
+    result += sprintf(result,"\n}]}");
 }
 
 void fetch_to_csv(char *result, rrd_value_t *data,
-                  unsigned long size, time_t start, unsigned long step, char ***ds_namv){
-    result += sprintf(result, "time,%s\n", **ds_namv);
-    for(int i = 0; i < size; i++){
-        result += sprintf(result, "%li,%lf\n", (long) (start + step*(i+1)), data[i]);
+                  unsigned long size, time_t start,
+                  unsigned long step, char ***ds_namv, unsigned long ds_cnt) {
+    result += sprintf(result, "time");
+    for(int j = 0; j < ds_cnt; j++) {
+        result += sprintf(result,",%s",(*ds_namv)[j]);
+    }
+    result += sprintf(result, "\n");
 
+    for(int i = 0; i < size; i++){
+        result += sprintf(result, "%li", (long) (start + step*(i+1)));
+        for(int j = 0; j < ds_cnt; j++) {
+            result += sprintf(result, ",%lf", data[i*ds_cnt + j]);
+        }
+        result += sprintf(result, "\r\n");
     }
 }
 
@@ -150,13 +186,13 @@ int rrdtools_fetch(char *filename, char *cf, time_t *start, time_t *end, unsigne
 
     switch (fetch){
         case ARRAY:
-            fetch_to_array(result, data, size, *start, *step);
+            fetch_to_array(result, data, size, *start, *step, ds_namv, *ds_cnt);
             break;
         case JSON:
-            fetch_to_json(result, data, size, *start, *step);
+            fetch_to_json(result, data, size, *start, *step, ds_namv, *ds_cnt);
             break;
         case CSV:
-            fetch_to_csv(result, data, size, *start, *step, ds_namv);
+            fetch_to_csv(result, data, size, *start, *step, ds_namv, *ds_cnt);
             break;
     }
     free(data);

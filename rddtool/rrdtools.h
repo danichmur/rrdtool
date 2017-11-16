@@ -8,6 +8,7 @@
 #include "config_manager.h"
 #include <rrd.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 
 enum FETCH_TYPE {
     ARRAY,

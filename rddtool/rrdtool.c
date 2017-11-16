@@ -10,38 +10,30 @@ void graph();
 
 int main(int argc, char** argv) {
     initialize();
-    graph();
-    printf(rrd_get_error());
-//    //create();
-//   // update();
-// char *list = (char *) calloc(MAX*LEN, sizeof(char));
-//  //  rrdtools_info("2test.rrd", list);
-// rrdtools_dump("2test.rrd", fp);
+    //create();
+    //update();
+
+//    char *list = (char *) calloc(MAX*LEN, sizeof(char));
+//    rrdtools_info("2ds.rrd", list);
 //    printf("%s", list);
-//
-//    clear();
 //    free(list);
 
-//    time_t start = 920804400;
-//    time_t end = 920809200;
-//    unsigned long step = 300;
-//    unsigned long ds_cnt;
-//    char **ds_namv = NULL;
-//    char *db_path = "2test.rrd";
-//
-//    size_t size = (end - start) / step;
-//    char *result = (char*)malloc(LEN*size*sizeof(char));
-//
-//    enum FETCH_TYPE a = CSV;
-//    rrdtools_fetch(db_path, "AVERAGE", &start, &end, &step, &ds_cnt, &ds_namv, result, a);
-//    size = (end - start) / step - 1;
-//    printf("%s\n", result);
-//
-//    free(result);
+    time_t start = 920804400;
+    time_t end = 920809200;
+    unsigned long step = 300;
+    unsigned long ds_cnt;
+    char **ds_namv = NULL;
+    char *db_path = "2ds.rrd";
 
+    size_t size = (end - start) / step;
+    char *result = (char*)malloc(LEN*10*size*sizeof(char));
+
+    enum FETCH_TYPE a = CSV;
+    rrdtools_fetch(db_path, "AVERAGE", &start, &end, &step, &ds_cnt, &ds_namv, result, a);
+    printf("%s\n", result);
+    free(result);
 
     return 0;
-
 }
 
 
@@ -99,10 +91,11 @@ void create(){
     size_t create_argc = 7;
     char *create_argv[] = {
             "create",
-            "2test.rrd",
+            "2ds.rrd",
             "--start",
             "920804400",
-            "DS:rrrr:COUNTER:600:U:U",
+            "DS:speed:COUNTER:600:U:U",
+            "DS:test:COUNTER:600:U:U",
             "RRA:AVERAGE:0.5:1:24",
             "RRA:AVERAGE:0.5:6:10"
     };
@@ -113,21 +106,24 @@ void update(){
     size_t update_argc = 3;
     size_t update_params_count = 15;
     char *update_params[] = {
-            "920804700:12345", "920805000:12357", "920805300:12363",
-            "920805600:12363", "920805900:12363", "920806200:12373",
-            "920806500:12383", "920806800:12393", "920807100:12399",
-            "920807400:12405", "920807700:12411", "920808000:12415",
-            "920808300:12420", "920808600:12422", "920808900:12423"
+            "920804700:12345:12345", "920805000:12357:12357", "920805300:12363:12363",
+            "920805600:12363:12363", "920805900:12363:12363", "920806200:12373:12373",
+            "920806500:12383:12383", "920806800:12393:12393", "920807100:12399:12399",
+            "920807400:12405:12405", "920807700:12411:12411", "920808000:12415:12415",
+            "920808300:12420:12420", "920808600:12422:12422", "920808900:12423:12423"
     };
+
+
     for(int i = 0; i < update_params_count; i++) {
         char *update_argv[] = {
                 "update",
-                "/home/parallels/rrdtool/rddtool/test_db/2test.rrd",
+                "/home/parallels/rrdtool/rddtool/test_db/2ds.rrd",
                 update_params[i]
         };
-
         printf("Update status: %d\n", rrd_update(update_argc, update_argv));
+        printf(rrd_get_error());
     }
+
 }
 //
 void graph(){

@@ -6,7 +6,7 @@
 
 
 dictionary  *ini;
-const char *conf_file_name = "../conf.ini";
+const char *conf_file_name = "/home/parallels/rrdtool/rddtool/conf.ini";
 
 bool check_file_rrd(const char * file_name){
     char *expansion = ".rrd";
@@ -27,7 +27,7 @@ int save_ini(){
     fclose(conf);
 }
 
-int initialize(){
+int initialize_ini(){
     ini = iniparser_load(conf_file_name);
     if (ini==NULL) {
         fprintf(stderr, "cannot parse %s\n", conf_file_name);
@@ -36,7 +36,15 @@ int initialize(){
     return 0;
 }
 
+void add_db(char *name){
+    const char * path = iniparser_getstring(ini, "rrd:db", "~/");
+    FILE *fp=fopen(path, "a");
+    fprintf(fp, "%s\n", name);
+    fclose(fp);
+}
+
 void get_db_list(char** list){
+
     DIR  *dir = opendir(get_db_path());
     if(dir) {
         int i = 0;
@@ -100,7 +108,7 @@ void set_res_path(char * new_db_path){
     set_path(new_db_path, "config:res_path");
 }
 
-int clear(){
+int clear_ini(){
     save_ini();
     iniparser_freedict(ini);
 }

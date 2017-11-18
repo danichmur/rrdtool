@@ -7,10 +7,11 @@
 
 void get_db_list_test();
 void graph();
-
+void create();
 int main(int argc, char** argv) {
-    initialize();
-    //create();
+    initialize_ini();
+    set_db_path("/home/parallels/rrdtool/rddtool/data/");
+    create();
     //update();
 
 //    char *list = (char *) calloc(MAX*LEN, sizeof(char));
@@ -18,19 +19,19 @@ int main(int argc, char** argv) {
 //    printf("%s", list);
 //    free(list);
 
-    time_t start = 920804400;
-    time_t end = 920809200;
-    unsigned long step = 300;
-    char *db_path = "2ds.rrd";
-
-    size_t size = (end - start) / step;
-  //  char *result = (char*)malloc(LEN*10*size*sizeof(char));
-
-    enum FETCH_TYPE a = ARRAY;
-    rrdtools_fetch_in_file(db_path, "AVERAGE", &start, &end, &step, "tolik.arr", a);
-   // printf("%s\n", result);
-   // free(result);
-
+//    time_t start = 920804400;
+//    time_t end = 920809200;
+//    unsigned long step = 300;
+//    char *db_path = "2ds.rrd";
+//
+//    size_t size = (end - start) / step;
+//  //  char *result = (char*)malloc(LEN*10*size*sizeof(char));
+//
+//    enum FETCH_TYPE a = ARRAY;
+//    rrdtools_fetch_in_file(db_path, "AVERAGE", &start, &end, &step, "tolik.arr", a);
+//   // printf("%s\n", result);
+//   // free(result);
+    clear_ini();
     return 0;
 }
 
@@ -81,11 +82,12 @@ void get_db_list_test(){
 //    }
 //
 //}
+
 void create(){
     size_t create_argc = 7;
     char *create_argv[] = {
             "create",
-            "2ds.rrd",
+            "1test.rrd",
             "--start",
             "920804400",
             "DS:speed:COUNTER:600:U:U",
@@ -136,7 +138,7 @@ void graph(){
             "920804400",
             "--end",
             "920808000",
-            "DEF:myspeed=2test.rrd:rrrr:AVERAGE",
+            "DEF:myspeed=test.rrd:rrrr:AVERAGE",
             "LINE2:myspeed#FF0000"
     };
     printf("Graph status: %d\n", rrdools_graph(graph_argc, graph_argv,
@@ -158,6 +160,6 @@ void graph(){
 //// rrdtools_dump("2test.rrd", fp);
 ////    printf("%s", list);
 ////
-////    clear();
-//fclose(fp);
+//// //fclose(fp);
 ////    free(list);
+

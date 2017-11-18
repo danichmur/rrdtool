@@ -2,16 +2,27 @@
 #define CREATEWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 
-class createwindow : public QMainWindow
+namespace Ui {
+class CreateWindow;
+}
+
+class CreateWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
-    explicit createwindow(QWidget *parent = nullptr);
+    explicit CreateWindow(QWidget *parent = 0);
+    ~CreateWindow();
 
-signals:
+private slots:
+    void on_pbCreate_clicked();
 
-public slots:
+private:
+    bool check_rra(std::string num);
+    bool check_ds(std::string num);
+    Ui::CreateWindow *ui;
 };
 
 #endif // CREATEWINDOW_H

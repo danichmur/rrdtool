@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "createwindow.h"
+#include "rrdtools.h"
+#include "config_manager.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +17,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private slots:
+    void on_actionAll_databases_triggered();
+    void on_actionCreate_database_triggered();
 
 private:
     Ui::MainWindow *ui;

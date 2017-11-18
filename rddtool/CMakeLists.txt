@@ -7,7 +7,8 @@ set(SOURCE_FILES main.c iniparser/dictionary.h iniparser/dictionary.c iniparser/
 
 find_library(RRD_LIBRARY librrd.so HINTS /usr/lib/x86_64-linux-gnu)
 
-add_executable(rddtool ${SOURCE_FILES})
+#add_executable(rddtool ${SOURCE_FILES})
+add_library (rddtool ${SOURCE_FILES})
 
 target_link_libraries(rddtool PUBLIC ${RRD_LIBRARY})
 

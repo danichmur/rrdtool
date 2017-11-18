@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT       += widgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = qt_gui
@@ -23,6 +23,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+LIBS += /home/parallels/rrdtool/rddtool/cmake-build-debug/librddtool.a
+#LIBS += -L/home/parallels/rrdtool/rddtool/cmake-build-debug -llibrddtool
+INCLUDEPATH += "/home/parallels/rrdtool/rddtool"
+
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
@@ -30,7 +34,8 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    createwindow.h
+        createwindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    createwindow.ui

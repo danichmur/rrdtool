@@ -184,6 +184,9 @@ RRD_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librrd.so
 //Value Computed by CMake
 rddtool_BINARY_DIR:STATIC=/home/parallels/rrdtool/rddtool/cmake-build-debug
 
+//Dependencies for the target
+rddtool_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/librrd.so;
+
 //Value Computed by CMake
 rddtool_SOURCE_DIR:STATIC=/home/parallels/rrdtool/rddtool
 

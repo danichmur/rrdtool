@@ -27,11 +27,15 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_database"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionCreate_database"/>
     <addaction name="separator"/>
     <addaction name="actionAll_databases"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -69,11 +73,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionNew_database">
-   <property name="text">
-    <string>New database...</string>
-   </property>
-  </action>
   <action name="actionAll_databases">
    <property name="text">
     <string>All databases...</string>
@@ -107,6 +106,11 @@
   <action name="actionAbou">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionCreate_database">
+   <property name="text">
+    <string>Create database...</string>
    </property>
   </action>
  </widget>

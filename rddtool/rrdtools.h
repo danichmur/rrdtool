@@ -15,6 +15,10 @@ enum FETCH_TYPE {
     CSV
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int rrdtools_create(int argc, char** argv);
 int rrdtools_remove(char*);
 void rrdtools_info(char*, char*);
@@ -26,5 +30,9 @@ int rrdtools_fetch(char*, char*, time_t*, time_t*,
 int rrdtools_fetch_in_file(char*, char*, time_t*, time_t*,
                            unsigned long*, char*, enum FETCH_TYPE);
 int rrdools_graph(int, char**, char***, int*, int*, double*, double*);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //RDDTOOL_RRDTOOLS_H

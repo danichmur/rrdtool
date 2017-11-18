@@ -74,6 +74,8 @@ int rrdtools_create(int argc, char** argv){
     char path[FILE_PATH_LEN];
     create_path(path, argv[PATH]);
     argv[PATH] = path;
+    printf(path);
+    add_db(path);
     return rrd_create(argc, argv);
 }
 
@@ -195,7 +197,6 @@ int rrdtools_fetch_in_file(char *filename, char *cf, time_t *start, time_t *end,
     char file_path[FILE_PATH_LEN];
     create_res_path(file_path, file);
     FILE *fp=fopen(file_path, "w");
-    printf("%s", result);
     fprintf(fp, "%s", result);
     free(result);
     fclose(fp);

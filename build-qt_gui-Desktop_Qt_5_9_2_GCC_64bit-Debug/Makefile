@@ -38,7 +38,7 @@ DISTNAME      = qt_gui1.0.0
 DISTDIR = /home/parallels/rrdtool/build-qt_gui-Desktop_Qt_5_9_2_GCC_64bit-Debug/.tmp/qt_gui1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/parallels/Qt5.9.2/5.9.2/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/parallels/rrdtool/rddtool/cmake-build-debug/librddtool.a -L/home/parallels/Qt5.9.2/5.9.2/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/home/parallels/rrdtool/rddtool/cmake-build-debug -lrddtool -L/usr/lib/x86_64-linux-gnu -lrrd -L/home/parallels/Qt5.9.2/5.9.2/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,13 +52,17 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../qt/qt_gui/main.cpp \
 		../qt/qt_gui/mainwindow.cpp \
-		../qt/qt_gui/createwindow.cpp moc_mainwindow.cpp \
-		moc_createwindow.cpp
+		../qt/qt_gui/createwindow.cpp \
+		../qt/qt_gui/renamewindow.cpp moc_mainwindow.cpp \
+		moc_createwindow.cpp \
+		moc_renamewindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		createwindow.o \
+		renamewindow.o \
 		moc_mainwindow.o \
-		moc_createwindow.o
+		moc_createwindow.o \
+		moc_renamewindow.o
 DIST          = ../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../Qt5.9.2/5.9.2/gcc_64/mkspecs/common/unix.conf \
 		../Qt5.9.2/5.9.2/gcc_64/mkspecs/common/linux.conf \
@@ -240,9 +244,11 @@ DIST          = ../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/yacc.prf \
 		../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/lex.prf \
 		../qt/qt/qt_gui/qt_gui.pro ../qt/qt_gui/mainwindow.h \
-		../qt/qt_gui/createwindow.h ../qt/qt_gui/main.cpp \
+		../qt/qt_gui/createwindow.h \
+		../qt/qt_gui/renamewindow.h ../qt/qt_gui/main.cpp \
 		../qt/qt_gui/mainwindow.cpp \
-		../qt/qt_gui/createwindow.cpp
+		../qt/qt_gui/createwindow.cpp \
+		../qt/qt_gui/renamewindow.cpp
 QMAKE_TARGET  = qt_gui
 DESTDIR       = 
 TARGET        = qt_gui
@@ -251,7 +257,7 @@ TARGET        = qt_gui
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_createwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_createwindow.h ui_renamewindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../qt/qt_gui/qt_gui.pro ../../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/spec_pre.prf \
@@ -638,9 +644,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/qt_gui/mainwindow.h ../qt/qt_gui/createwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/qt_gui/main.cpp ../qt/qt_gui/mainwindow.cpp ../qt/qt_gui/createwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../qt/qt_gui/mainwindow.ui ../qt/qt_gui/createwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/qt_gui/mainwindow.h ../qt/qt_gui/createwindow.h ../qt/qt_gui/renamewindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/qt_gui/main.cpp ../qt/qt_gui/mainwindow.cpp ../qt/qt_gui/createwindow.cpp ../qt/qt_gui/renamewindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../qt/qt_gui/mainwindow.ui ../qt/qt_gui/createwindow.ui ../qt/qt_gui/renamewindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -672,9 +678,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../Qt5.9.2/5.9.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_createwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_createwindow.cpp moc_renamewindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_createwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_createwindow.cpp moc_renamewindow.cpp
 moc_mainwindow.cpp: ../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -782,10 +788,27 @@ moc_mainwindow.cpp: ../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMessageBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
 		../rddtool/rrdtools.h \
 		../rddtool/config_manager.h \
 		../rddtool/iniparser/iniparser.h \
 		../rddtool/iniparser/dictionary.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVector \
+		../qt/qt_gui/renamewindow.h \
 		../qt/qt_gui/mainwindow.h \
 		moc_predefs.h \
 		../../Qt5.9.2/5.9.2/gcc_64/bin/moc
@@ -897,16 +920,163 @@ moc_createwindow.cpp: ../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMessageBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
+		../rddtool/rrdtools.h \
+		../rddtool/config_manager.h \
+		../rddtool/iniparser/iniparser.h \
+		../rddtool/iniparser/dictionary.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVector \
 		../qt/qt_gui/createwindow.h \
 		moc_predefs.h \
 		../../Qt5.9.2/5.9.2/gcc_64/bin/moc
 	/home/parallels/Qt5.9.2/5.9.2/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/mkspecs/linux-g++ -I/home/parallels/rrdtool/qt/qt_gui -I/home/parallels/rrdtool/rddtool -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtWidgets -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtGui -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/qt_gui/createwindow.h -o moc_createwindow.cpp
 
+moc_renamewindow.cpp: ../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtguiglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qconfig.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlogging.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qflags.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmutex.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qnumeric.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtgui-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qwindowdefs.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobjectdefs.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qnamespace.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobject.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstring.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qchar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbytearray.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qrefcount.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qarraydata.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringbuilder.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qalgorithms.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qiterator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qhashfunctions.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qpair.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbytearraylist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringlist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregexp.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringmatcher.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcoreevent.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qscopedpointer.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmetatype.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobject_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmargins.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpaintdevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qrect.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsize.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qpoint.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpalette.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qcolor.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qrgb.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qrgba64.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qbrush.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvector.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qmatrix.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpolygon.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qregion.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qdatastream.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qiodevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qline.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtransform.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpainterpath.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qimage.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpixelformat.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpixmap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsharedpointer.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qshareddata.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qhash.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfont.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfontinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qcursor.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qkeysequence.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qevent.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvariant.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qdebug.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtextstream.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlocale.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qset.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qurl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qurlquery.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qfile.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvector2d.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qicon.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
+		../rddtool/rrdtools.h \
+		../rddtool/config_manager.h \
+		../rddtool/iniparser/iniparser.h \
+		../rddtool/iniparser/dictionary.h \
+		../qt/qt_gui/renamewindow.h \
+		moc_predefs.h \
+		../../Qt5.9.2/5.9.2/gcc_64/bin/moc
+	/home/parallels/Qt5.9.2/5.9.2/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/mkspecs/linux-g++ -I/home/parallels/rrdtool/qt/qt_gui -I/home/parallels/rrdtool/rddtool -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtWidgets -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtGui -I/home/parallels/Qt5.9.2/5.9.2/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qt/qt_gui/renamewindow.h -o moc_renamewindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_createwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_createwindow.h ui_renamewindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_createwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_createwindow.h ui_renamewindow.h
 ui_mainwindow.h: ../qt/qt_gui/mainwindow.ui \
 		../../Qt5.9.2/5.9.2/gcc_64/bin/uic
 	/home/parallels/Qt5.9.2/5.9.2/gcc_64/bin/uic ../qt/qt_gui/mainwindow.ui -o ui_mainwindow.h
@@ -914,6 +1084,10 @@ ui_mainwindow.h: ../qt/qt_gui/mainwindow.ui \
 ui_createwindow.h: ../qt/qt_gui/createwindow.ui \
 		../../Qt5.9.2/5.9.2/gcc_64/bin/uic
 	/home/parallels/Qt5.9.2/5.9.2/gcc_64/bin/uic ../qt/qt_gui/createwindow.ui -o ui_createwindow.h
+
+ui_renamewindow.h: ../qt/qt_gui/renamewindow.ui \
+		../../Qt5.9.2/5.9.2/gcc_64/bin/uic
+	/home/parallels/Qt5.9.2/5.9.2/gcc_64/bin/uic ../qt/qt_gui/renamewindow.ui -o ui_renamewindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -1033,10 +1207,27 @@ main.o: ../qt/qt_gui/main.cpp ../qt/qt_gui/mainwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMessageBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
 		../rddtool/rrdtools.h \
 		../rddtool/config_manager.h \
 		../rddtool/iniparser/iniparser.h \
 		../rddtool/iniparser/dictionary.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVector \
+		../qt/qt_gui/renamewindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QApplication \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1154,10 +1345,27 @@ mainwindow.o: ../qt/qt_gui/mainwindow.cpp ../qt/qt_gui/mainwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMessageBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
 		../rddtool/rrdtools.h \
 		../rddtool/config_manager.h \
 		../rddtool/iniparser/iniparser.h \
 		../rddtool/iniparser/dictionary.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVector \
+		../qt/qt_gui/renamewindow.h \
 		ui_mainwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVariant \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QAction \
@@ -1176,19 +1384,7 @@ mainwindow.o: ../qt/qt_gui/mainwindow.cpp ../qt/qt_gui/mainwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMenu \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmenu.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMenuBar \
@@ -1307,20 +1503,6 @@ createwindow.o: ../qt/qt_gui/createwindow.cpp ../qt/qt_gui/createwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMessageBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmessagebox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdialog.h \
-		ui_createwindow.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVariant \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QAction \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qaction.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QApplication \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qeventloop.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
-		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -1335,6 +1517,26 @@ createwindow.o: ../qt/qt_gui/createwindow.cpp ../qt/qt_gui/createwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
+		../rddtool/rrdtools.h \
+		../rddtool/config_manager.h \
+		../rddtool/iniparser/iniparser.h \
+		../rddtool/iniparser/dictionary.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVector \
+		ui_createwindow.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QVariant \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QAction \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qaction.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QApplication \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QButtonGroup \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qbuttongroup.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QHeaderView \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qheaderview.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemview.h \
@@ -1360,11 +1562,140 @@ createwindow.o: ../qt/qt_gui/createwindow.cpp ../qt/qt_gui/createwindow.h \
 		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o createwindow.o ../qt/qt_gui/createwindow.cpp
 
+renamewindow.o: ../qt/qt_gui/renamewindow.cpp ../qt/qt_gui/renamewindow.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QMainWindow \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtguiglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qglobal.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qconfig.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtcore-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsystemdetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qprocessordetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtypeinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsysinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlogging.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qflags.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbasicatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qgenericatomic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qglobalstatic.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmutex.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qnumeric.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qversiontagging.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtgui-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qwidget.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qwindowdefs.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobjectdefs.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qnamespace.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobject.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstring.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qchar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbytearray.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qrefcount.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qarraydata.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringbuilder.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qalgorithms.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qiterator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qhashfunctions.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qpair.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qbytearraylist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringlist.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregexp.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qstringmatcher.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcoreevent.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qscopedpointer.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmetatype.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qobject_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmargins.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpaintdevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qrect.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsize.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qpoint.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpalette.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qcolor.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qrgb.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qrgba64.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qbrush.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvector.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qmatrix.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpolygon.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qregion.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qdatastream.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qiodevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qline.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtransform.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpainterpath.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qimage.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpixelformat.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qpixmap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsharedpointer.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qshareddata.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qhash.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfont.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfontmetrics.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qfontinfo.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qcursor.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qkeysequence.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qevent.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qvariant.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qmap.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qdebug.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qtextstream.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qlocale.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qset.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qurl.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qurlquery.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qfile.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qfiledevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvector2d.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qtouchdevice.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qicon.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/QComboBox \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qcombobox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtGui/qvalidator.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qstyle.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qtabbar.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../Qt5.9.2/5.9.2/gcc_64/include/QtCore/QTextStream \
+		../rddtool/rrdtools.h \
+		../rddtool/config_manager.h \
+		../rddtool/iniparser/iniparser.h \
+		../rddtool/iniparser/dictionary.h \
+		ui_renamewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o renamewindow.o ../qt/qt_gui/renamewindow.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 moc_createwindow.o: moc_createwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_createwindow.o moc_createwindow.cpp
+
+moc_renamewindow.o: moc_renamewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_renamewindow.o moc_renamewindow.cpp
 
 ####### Install
 

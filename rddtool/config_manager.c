@@ -36,13 +36,6 @@ int initialize_ini(){
     return 0;
 }
 
-void add_db(char *name){
-    const char * path = iniparser_getstring(ini, "rrd:db", "~/");
-    FILE *fp=fopen(path, "a");
-    fprintf(fp, "%s\n", name);
-    fclose(fp);
-}
-
 void get_db_list(char** list){
 
     DIR  *dir = opendir(get_db_path());

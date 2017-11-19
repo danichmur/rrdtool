@@ -18,6 +18,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -35,6 +36,7 @@ public:
     QAction *actionAbou;
     QAction *actionCreate_database;
     QWidget *centralWidget;
+    QTextBrowser *textBrowser;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -47,7 +49,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1264, 848);
+        MainWindow->resize(542, 816);
         actionAll_databases = new QAction(MainWindow);
         actionAll_databases->setObjectName(QStringLiteral("actionAll_databases"));
         actionSettings = new QAction(MainWindow);
@@ -66,10 +68,15 @@ public:
         actionCreate_database->setObjectName(QStringLiteral("actionCreate_database"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        textBrowser = new QTextBrowser(centralWidget);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setGeometry(QRect(20, 10, 501, 121));
+        textBrowser->setAutoFillBackground(false);
+        textBrowser->setReadOnly(true);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1264, 30));
+        menuBar->setGeometry(QRect(0, 0, 542, 30));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);

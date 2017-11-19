@@ -74,8 +74,6 @@ int rrdtools_create(int argc, char** argv){
     char path[FILE_PATH_LEN];
     create_path(path, argv[PATH]);
     argv[PATH] = path;
-    printf(path);
-    add_db(path);
     return rrd_create(argc, argv);
 }
 
@@ -92,7 +90,7 @@ int rrdtools_tune(int argc, char** argv) {
     return rrd_tune(argc, argv);
 }
 
-int rrdtools_rename(char* old_name, char* new_name){
+int rrdtools_rename(const char* old_name, const char* new_name){
     char old_path[FILE_PATH_LEN];
     create_path(old_path, old_name);
     char new_path[FILE_PATH_LEN];

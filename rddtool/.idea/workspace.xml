@@ -25,8 +25,8 @@
       <file leaf-file-name="rrdtools.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rrdtools.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="192" column="16" lean-forward="false" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+            <state relative-caret-position="272">
+              <caret line="92" column="47" lean-forward="false" selection-start-line="92" selection-start-column="42" selection-end-line="92" selection-end-column="47" />
               <folding>
                 <element signature="e#44#61#0" expanded="true" />
               </folding>
@@ -34,11 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rrdtools.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rrdtools.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <element signature="e#99#126#0" expanded="true" />
+                <element signature="e#235#247#0" expanded="true" />
+                <element signature="e#815#816#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="157" column="57" lean-forward="false" selection-start-line="157" selection-start-column="5" selection-end-line="157" selection-end-column="57" />
+            <state relative-caret-position="272">
+              <caret line="89" column="15" lean-forward="false" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -50,18 +64,30 @@
         <entry file="file://$PROJECT_DIR$/conf.ini">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="3" column="69" lean-forward="false" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config_manager.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config_manager.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config_manager.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config_manager.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config_manager.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding>
+                <element signature="e#111#143#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,13 +100,13 @@
         <option value="$PROJECT_DIR$/inih/ini.h" />
         <option value="$PROJECT_DIR$/inih/ini.c" />
         <option value="$PROJECT_DIR$/rrdtool.c" />
-        <option value="$PROJECT_DIR$/rrdtools.c" />
-        <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/conf.ini" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/rrdtools.h" />
-        <option value="$PROJECT_DIR$/config_manager.h" />
         <option value="$PROJECT_DIR$/config_manager.c" />
+        <option value="$PROJECT_DIR$/config_manager.h" />
+        <option value="$PROJECT_DIR$/rrdtools.c" />
+        <option value="$PROJECT_DIR$/rrdtools.h" />
+        <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
@@ -128,11 +154,6 @@
               <item name="rddtool" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="rddtool" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rddtool" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="rddtool" type="462c0819:PsiDirectoryNode" />
-              <item name="iniparser" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -195,25 +216,25 @@
       <workItem from="1510827382163" duration="236000" />
       <workItem from="1510827645007" duration="3053000" />
       <workItem from="1510838017790" duration="19357000" />
-      <workItem from="1511014455265" duration="7875000" />
+      <workItem from="1511014455265" duration="8490000" />
+      <workItem from="1511114479816" duration="5802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89628000" />
+    <option name="totallyTimeSpent" value="96045000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="98" y="-6" width="2462" height="1606" extended-state="6" />
-    <editor active="true" />
+    <frame x="1329" y="-6" width="2464" height="1600" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39873418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39873418" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6132208" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48030943" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17587328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17587328" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -240,23 +261,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config_manager.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" lean-forward="true" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -484,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/rrd.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="92" column="19" lean-forward="false" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/tolik.csv" />
     <entry file="file://$PROJECT_DIR$/res/tolik.json" />
     <entry file="file://$PROJECT_DIR$/res/tolik.arr" />
@@ -510,37 +507,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="3" column="69" lean-forward="false" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rrdtools.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="192" column="16" lean-forward="false" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
-          <folding>
-            <element signature="e#44#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/db" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-612">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -556,52 +527,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config_manager.h">
+    <entry file="file:///usr/include/rrd.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        <state relative-caret-position="306">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
           <folding>
-            <element signature="e#111#143#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
+            <element signature="e#2303#2318#0" expanded="true" />
+            <element signature="e#2428#2575#0" expanded="true" />
+            <element signature="e#2585#2602#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="238">
+          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rrdtools.h">
+    <entry file="file://$PROJECT_DIR$/conf.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-104">
-          <caret line="17" column="18" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="18" />
-          <folding>
-            <element signature="e#99#126#0" expanded="true" />
-            <element signature="e#235#247#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="157" column="57" lean-forward="false" selection-start-line="157" selection-start-column="5" selection-end-line="157" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config_manager.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="8" column="70" lean-forward="false" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/stdio.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="177" column="11" lean-forward="false" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config_manager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="e#111#143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rrdtools.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="92" column="47" lean-forward="false" selection-start-line="92" selection-start-column="42" selection-end-line="92" selection-end-column="47" />
+          <folding>
+            <element signature="e#44#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rrdtools.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#99#126#0" expanded="true" />
+            <element signature="e#235#247#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="89" column="15" lean-forward="false" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -71,13 +71,13 @@ void get_db_list_test(){
 
 //
 //void choose_command(int argc, char** argv){
-//    if (strcmp(argv[1], "create")==0) {
+//    if (strcmp(argv[1.rrd], "create")==0) {
 //        create();
 //    }
-//    else if (strcmp(argv[1], "update")==0) {
+//    else if (strcmp(argv[1.rrd], "update")==0) {
 //        update();
 //    }
-//    else if (strcmp(argv[1], "graph")==0) {
+//    else if (strcmp(argv[1.rrd], "graph")==0) {
 //        graph();
 //    }
 //
@@ -87,12 +87,12 @@ void create(){
     size_t create_argc = 7;
     char *create_argv[] = {
             "create",
-            "1test.rrd",
+            "12test.rrd",
             "--start",
             "920804400",
             "DS:speed:COUNTER:600:U:U",
             "DS:test:COUNTER:600:U:U",
-            "RRA:AVERAGE:0.5:1:24",
+            "RRA:AVERAGE:0.5:1.rrd:24",
             "RRA:AVERAGE:0.5:6:10"
     };
     printf("Create status: %d\n", rrdtools_create(create_argc, create_argv));

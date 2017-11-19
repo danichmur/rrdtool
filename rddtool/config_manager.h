@@ -17,7 +17,6 @@
 extern "C" {
 #endif
 
-void add_db(char *);
 void get_db_list(char**);
 const char * get_db_path();
 const char * get_res_path();

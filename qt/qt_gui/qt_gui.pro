@@ -23,19 +23,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-LIBS += /home/parallels/rrdtool/rddtool/cmake-build-debug/librddtool.a
-#LIBS += -L/home/parallels/rrdtool/rddtool/cmake-build-debug -llibrddtool
+#LIBS += /home/parallels/rrdtool/rddtool/cmake-build-debug/librddtool.a
+LIBS += -L/home/parallels/rrdtool/rddtool/cmake-build-debug -lrddtool
+LIBS += -L/usr/lib/x86_64-linux-gnu -lrrd
 INCLUDEPATH += "/home/parallels/rrdtool/rddtool"
 
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    createwindow.cpp
+    createwindow.cpp \
+    renamewindow.cpp
 
 HEADERS += \
         mainwindow.h \
-        createwindow.h
+        createwindow.h \
+    renamewindow.h
 
 FORMS += \
         mainwindow.ui \
-    createwindow.ui
+    createwindow.ui \
+    renamewindow.ui

@@ -3,6 +3,14 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QComboBox>
+#include "rrdtools.h"
+#include "config_manager.h"
+#include <QVector>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sstream>
+#include <QTextStream>
 
 namespace Ui {
 class CreateWindow;
@@ -20,8 +28,8 @@ private slots:
     void on_pbCreate_clicked();
 
 private:
-    bool check_rra(std::string num);
-    bool check_ds(std::string num);
+    std::string check_rra(std::string num);
+    std::string check_ds(std::string num);
     Ui::CreateWindow *ui;
 };
 

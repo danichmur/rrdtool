@@ -23,7 +23,7 @@ int rrdtools_create(int argc, char** argv);
 int rrdtools_remove(char*);
 void rrdtools_info(char*, char*);
 int rrdtools_tune(int argc, char** argv);
-int rrdtools_rename(char*, char*);
+int rrdtools_rename(const char*, const char*);
 int rrdtools_dump(char *, FILE *);
 int rrdtools_fetch(char*, char*, time_t*, time_t*,
                    unsigned long*, char*, enum FETCH_TYPE);

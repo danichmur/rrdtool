@@ -5,6 +5,7 @@
 #include "createwindow.h"
 #include "rrdtools.h"
 #include "config_manager.h"
+#include "renamewindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,7 @@ public:
 private slots:
     void on_actionAll_databases_triggered();
     void on_actionCreate_database_triggered();
+    void on_actionName_triggered();
 
 private:
     Ui::MainWindow *ui;

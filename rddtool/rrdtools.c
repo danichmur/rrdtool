@@ -34,7 +34,7 @@ void create_path_graph(char *path, char *param){
     free(param_new);
 }
 
-void rrdtools_info(char *name, char *output){
+void rrdtools_info(const char *name, char *output){
     char path[FILE_PATH_LEN];
     create_path(path, name);
     rrdtools_info_print(rrd_info_r(path), output);
@@ -77,7 +77,7 @@ int rrdtools_create(int argc, char** argv){
     return rrd_create(argc, argv);
 }
 
-int rrdtools_remove(char *db_name){
+int rrdtools_remove(const char *db_name){
     char path[FILE_PATH_LEN];
     create_path(path, db_name);
     return remove(path);
@@ -168,7 +168,7 @@ int rrdtools_fetch(char *filename, char *cf, time_t *start, time_t *end,
     char new_path[FILE_PATH_LEN];
     create_path(new_path, filename);
     int rrd_res = rrd_fetch_r(new_path, cf, start, end, step, &ds_cnt, &ds_namv, &data);
-    if(rrd_res){
+    if(rrd_res != 0){
         return -1;
     }
     unsigned long size = (*end - *start) / *step - 1;
@@ -188,16 +188,20 @@ int rrdtools_fetch(char *filename, char *cf, time_t *start, time_t *end,
     return rrd_res;
 }
 
-int rrdtools_fetch_in_file(char *filename, char *cf, time_t *start, time_t *end,
-                   unsigned long *step, char *file, enum FETCH_TYPE fetch) {
+int rrdtools_fetch_in_file(const char *filename, const char *cf, time_t *start, time_t *end,
+                   unsigned long *step, const char *file, enum FETCH_TYPE fetch) {
     char *result = (char*)malloc(LEN*LEN*sizeof(char));
-    rrdtools_fetch(filename, cf, start, end, step, result, fetch);
+    int rrd_res = rrdtools_fetch(filename, cf, start, end, step, result, fetch);
+    if(rrd_res != 0){
+        return -1;
+    }
     char file_path[FILE_PATH_LEN];
     create_res_path(file_path, file);
     FILE *fp=fopen(file_path, "w");
     fprintf(fp, "%s", result);
     free(result);
     fclose(fp);
+    return rrd_res;
 }
 
 int rrdools_graph(int graph_argc, char** graph_argv, char ***calcpr,

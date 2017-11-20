@@ -17,7 +17,7 @@ CreateWindow::~CreateWindow()
     delete ui;
 }
 
-void message_alert(string text){
+void CreateWindow::message_alert(string text){
     QMessageBox msgBox;
     msgBox.setText(QString::fromStdString(text));
     msgBox.exec();
@@ -40,12 +40,10 @@ bool check_start(QTextEdit* te){
         string::size_type sz;
         long l = stol(text,&sz);
         if(l < 0){
-            message_alert("start must be > 0");
             return false;
         }
     }
     catch (const invalid_argument& ia) {
-        message_alert("check start field");
         return false;
     }
     return true;
@@ -202,6 +200,7 @@ void CreateWindow::on_pbCreate_clicked()
         return;
     }
     if(!check_start(teStart)){
+        message_alert("check start field");
         return;
     }
     if(!check_int_field(teStep)){

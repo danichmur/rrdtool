@@ -28,6 +28,7 @@ private slots:
     void on_pbCreate_clicked();
 
 private:
+    void message_alert(std::string text);
     std::string check_rra(std::string num);
     std::string check_ds(std::string num);
     Ui::CreateWindow *ui;

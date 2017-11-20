@@ -93,11 +93,11 @@ void set_path(char * new_db_path, char * name){
     iniparser_set(ini, name, path);
 }
 
-void set_db_path(char * new_db_path){
+void set_db_path(const char * new_db_path){
     set_path(new_db_path, "config:db_path");
 }
 
-void set_res_path(char * new_db_path){
+void set_res_path(const char * new_db_path){
     set_path(new_db_path, "config:res_path");
 }
 

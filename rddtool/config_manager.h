@@ -20,8 +20,8 @@ extern "C" {
 void get_db_list(char**);
 const char * get_db_path();
 const char * get_res_path();
-void set_db_path(char *);
-void set_res_path(char *);
+void set_db_path(const char *);
+void set_res_path(const char *);
 int initialize_ini();
 int clear_ini();
 

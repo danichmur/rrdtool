@@ -11,8 +11,8 @@ void create();
 int main(int argc, char** argv) {
     initialize_ini();
     set_db_path("/home/parallels/rrdtool/rddtool/data/");
-    create();
-    //update();
+    //create();
+    update();
 
 //    char *list = (char *) calloc(MAX*LEN, sizeof(char));
 //    rrdtools_info("2ds.rrd", list);
@@ -113,7 +113,7 @@ void update(){
     for(int i = 0; i < update_params_count; i++) {
         char *update_argv[] = {
                 "update",
-                "/home/parallels/rrdtool/rddtool/test_db/2ds.rrd",
+                "/home/parallels/rrdtool/rddtool/data/test.rrd",
                 update_params[i]
         };
         printf("Update status: %d\n", rrd_update(update_argc, update_argv));

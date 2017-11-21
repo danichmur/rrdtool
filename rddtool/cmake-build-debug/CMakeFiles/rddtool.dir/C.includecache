@@ -11,20 +11,12 @@ config_manager.h
 /home/parallels/rrdtool/rddtool/config_manager.h
 
 /home/parallels/rrdtool/rddtool/config_manager.h
-iniparser/iniparser.h
-/home/parallels/rrdtool/rddtool/iniparser/iniparser.h
-stdio.h
--
-stdlib.h
--
-string.h
--
 dirent.h
--
-stdbool.h
 -
 sys/stat.h
 -
+iniparser/iniparser.h
+/home/parallels/rrdtool/rddtool/iniparser/iniparser.h
 
 /home/parallels/rrdtool/rddtool/iniparser/dictionary.c
 dictionary.h

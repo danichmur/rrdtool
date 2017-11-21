@@ -4,8 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/rddtool.dir/iniparser/iniparser.c.o"
   "CMakeFiles/rddtool.dir/config_manager.c.o"
   "CMakeFiles/rddtool.dir/rrdtools.c.o"
-  "librddtool.pdb"
-  "librddtool.a"
+  "rddtool.pdb"
+  "rddtool"
 )
 
 # Per-language clean rules from dependency scanning.

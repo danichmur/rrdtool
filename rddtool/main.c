@@ -10,9 +10,9 @@ void graph();
 void create();
 int main(int argc, char** argv) {
     initialize_ini();
-    set_db_path("/home/parallels/rrdtool/rddtool/data/");
-    //create();
-    update();
+    //set_db_path("/home/parallels/rrdtool/rddtool/data/");
+    create();
+    //update();
 
 //    char *list = (char *) calloc(MAX*LEN, sizeof(char));
 //    rrdtools_info("2ds.rrd", list);
@@ -87,15 +87,14 @@ void create(){
     size_t create_argc = 7;
     char *create_argv[] = {
             "create",
-            "12test.rrd",
+            "4test",
             "--start",
             "920804400",
             "DS:speed:COUNTER:600:U:U",
-            "DS:test:COUNTER:600:U:U",
-            "RRA:AVERAGE:0.5:1.rrd:24",
-            "RRA:AVERAGE:0.5:6:10"
+            "RRA:AVERAGE:0.5:1.rrd:24"
     };
     printf("Create status: %d\n", rrdtools_create(create_argc, create_argv));
+    printf("%s", rrd_get_error());
 }
 
 void update(){

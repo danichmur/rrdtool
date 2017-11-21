@@ -1,2 +1,1 @@
-/usr/bin/ar qc librddtool.a  CMakeFiles/rddtool.dir/main.c.o CMakeFiles/rddtool.dir/iniparser/dictionary.c.o CMakeFiles/rddtool.dir/iniparser/iniparser.c.o CMakeFiles/rddtool.dir/config_manager.c.o CMakeFiles/rddtool.dir/rrdtools.c.o
-/usr/bin/ranlib librddtool.a
+/usr/bin/cc -g   CMakeFiles/rddtool.dir/main.c.o CMakeFiles/rddtool.dir/iniparser/dictionary.c.o CMakeFiles/rddtool.dir/iniparser/iniparser.c.o CMakeFiles/rddtool.dir/config_manager.c.o CMakeFiles/rddtool.dir/rrdtools.c.o  -o rddtool /usr/lib/x86_64-linux-gnu/librrd.so 

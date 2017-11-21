@@ -5,13 +5,9 @@
 #ifndef RDDTOOL_CONFIG_MANAGER_H
 #define RDDTOOL_CONFIG_MANAGER_H
 
-#include "iniparser/iniparser.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <dirent.h>
-#include <stdbool.h>
 #include <sys/stat.h>
+#include "iniparser/iniparser.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,8 +16,8 @@ extern "C" {
 void get_db_list(char**);
 const char * get_db_path();
 const char * get_res_path();
-void set_db_path(const char *);
-void set_res_path(const char *);
+int set_db_path(const char *);
+int set_res_path(const char *);
 int initialize_ini();
 int clear_ini();
 

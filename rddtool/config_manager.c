@@ -3,49 +3,38 @@
 //
 
 #include "config_manager.h"
-
+#define FILE_PATH_LEN 4096
 
 dictionary  *ini;
 const char *conf_file_name = "/home/parallels/rrdtool/rddtool/conf.ini";
 
-bool check_file_rrd(const char * file_name){
-    char *expansion = ".rrd";
-    size_t ex_len = strlen(expansion);
-    char subStr[ex_len + 1];
-    strncpy(subStr, file_name+strlen(file_name)-ex_len, ex_len);
-    subStr[ex_len] = 0;
-    return strcmp(subStr, expansion) == 0;
-}
-
 int save_ini(){
     FILE *conf;
     if ((conf=fopen(conf_file_name, "w"))==NULL) {
-        fprintf(stderr, "iniparser: cannot open %s\n", conf_file_name);
+        fprintf(stderr, "Can't open %s.\n", conf_file_name);
         return -1;
     }
     iniparser_dump_ini(ini, conf);
     fclose(conf);
+    return 0;
 }
 
 int initialize_ini(){
     ini = iniparser_load(conf_file_name);
     if (ini==NULL) {
         fprintf(stderr, "cannot parse %s\n", conf_file_name);
-        return -1 ;
+        return -1;
     }
     return 0;
 }
 
 void get_db_list(char** list){
-
     DIR  *dir = opendir(get_db_path());
     if(dir) {
         int i = 0;
         struct dirent *ent;
         while((ent = readdir(dir)) != NULL) {
-            if(check_file_rrd(ent->d_name)) {
-                sprintf(list[i++], "%s", ent->d_name);
-            }
+            sprintf(list[i++], "%s", ent->d_name);
         }
     }
 }
@@ -58,7 +47,7 @@ const char * get_res_path(){
     return iniparser_getstring(ini, "config:res_path", "~/");
 }
 
-static void _mkdir(const char *dir) {
+static void make_directory(const char *dir) {
     char tmp[256];
     char *p = NULL;
     size_t len;
@@ -79,8 +68,11 @@ static void _mkdir(const char *dir) {
     mkdir(tmp, S_IRWXU);
 }
 
-void set_path(char * new_db_path, char * name){
-    char path[80];
+int set_path(const char * new_db_path, const char * name){
+    if(strcmp(new_db_path, "") == 0){
+        return -1;
+    }
+    char path[FILE_PATH_LEN];
     if(new_db_path[0] == '~'){
         strcpy(path, getenv("HOME"));
         char substr[strlen(new_db_path) - 1];
@@ -89,19 +81,21 @@ void set_path(char * new_db_path, char * name){
     } else {
         strcpy(path, new_db_path);
     }
-    _mkdir(path);
+    make_directory(path);
     iniparser_set(ini, name, path);
+    return 0;
 }
 
-void set_db_path(const char * new_db_path){
-    set_path(new_db_path, "config:db_path");
+int set_db_path(const char * new_db_path){
+    return set_path(new_db_path, "config:db_path");
 }
 
-void set_res_path(const char * new_db_path){
-    set_path(new_db_path, "config:res_path");
+int set_res_path(const char * new_db_path){
+    return set_path(new_db_path, "config:res_path");
 }
 
 int clear_ini(){
     save_ini();
     iniparser_freedict(ini);
+    return 0;
 }

@@ -34,7 +34,9 @@ void get_db_list(char** list){
         int i = 0;
         struct dirent *ent;
         while((ent = readdir(dir)) != NULL) {
-            sprintf(list[i++], "%s", ent->d_name);
+            if(ent->d_name[0] !=  '.'){
+                sprintf(list[i++], "%s", ent->d_name);
+            }
         }
     }
 }

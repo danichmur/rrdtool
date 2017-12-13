@@ -7,6 +7,7 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <malloc.h>
 #include "iniparser/iniparser.h"
 
 #ifdef __cplusplus
@@ -20,7 +21,6 @@ int set_db_path(const char *);
 int set_res_path(const char *);
 int initialize_ini();
 int clear_ini();
-
 #ifdef __cplusplus
 }
 #endif

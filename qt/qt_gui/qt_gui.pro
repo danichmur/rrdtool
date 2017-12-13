@@ -34,7 +34,8 @@ SOURCES += \
     deletewindow.cpp \
     settingswindow.cpp \
     aboutwindow.cpp \
-    getdatawindow.cpp
+    getdatawindow.cpp \
+    insertwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,7 +44,8 @@ HEADERS += \
     deletewindow.h \
     settingswindow.h \
     aboutwindow.h \
-    getdatawindow.h
+    getdatawindow.h \
+    insertwindow.h
 
 FORMS += \
         mainwindow.ui \
@@ -52,4 +54,5 @@ FORMS += \
     deletewindow.ui \
     settingswindow.ui \
     aboutwindow.ui \
-    getdatawindow.ui
+    getdatawindow.ui \
+    insertwindow.ui

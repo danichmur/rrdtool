@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>RRDtools</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextBrowser" name="textBrowser">
@@ -105,6 +105,8 @@
     <addaction name="actionName"/>
     <addaction name="separator"/>
     <addaction name="actionPropertis"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsert"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
@@ -177,6 +179,11 @@
   <action name="actionDelete_database">
    <property name="text">
     <string>Delete database...</string>
+   </property>
+  </action>
+  <action name="actionInsert">
+   <property name="text">
+    <string>Insert</string>
    </property>
   </action>
  </widget>

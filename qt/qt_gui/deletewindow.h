@@ -17,6 +17,7 @@ class DeleteWindow : public QMainWindow
 
 public:
     explicit DeleteWindow(QWidget *parent = 0);
+    int fill_cb();
     ~DeleteWindow();
 
 private slots:
@@ -24,7 +25,7 @@ private slots:
 
 private:
     Ui::DeleteWindow *ui;
-    void fill_cb();
+
 };
 
 #endif // DELETEWINDOW_H

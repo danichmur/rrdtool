@@ -248,9 +248,9 @@ void CreateWindow::on_pbCreate_clicked()
     } else {
         message_alert(rrd_get_error());
     }
-//    for(int i = 0; i < argv; i++){
-//        free(args[i]);
-//    }
-//    free(args);
+    cout << "argv: " << argv << endl << "argc: ";
+    for(int i = 0; i < create_params.size(); i++){
+        cout << create_params[i] << endl;
+    }
     this->close();
 }

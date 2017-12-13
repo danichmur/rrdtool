@@ -8,7 +8,6 @@ DeleteWindow::DeleteWindow(QWidget *parent) :
     ui(new Ui::DeleteWindow)
 {
     ui->setupUi(this);
-    fill_cb();
 }
 
 DeleteWindow::~DeleteWindow()
@@ -24,10 +23,14 @@ void DeleteWindow::on_pushButton_clicked()
         msgBox.setText(QString::fromStdString("Can't remove rrd!"));
         msgBox.exec();
     }
+    fill_cb();
 }
 
-void DeleteWindow::fill_cb(){
+int DeleteWindow::fill_cb(){
     QComboBox* cbName = this->findChild<QComboBox*>("cbName");
+    QMessageBox msgBox;
+
+    cbName->clear();
     char **list = (char **) calloc(COUNT, sizeof(char *));
     for(int i = 0; i < COUNT; i++){
         list[i] = (char *) calloc(LEN, sizeof(char));
@@ -38,5 +41,14 @@ void DeleteWindow::fill_cb(){
         cbName->addItem(list[i]);
         free(list[i++]);
     }
+
     free(list);
+    if(i == 0){
+        QMessageBox msgBox;
+        msgBox.setText("Databases not found!");
+        msgBox.exec();
+        this->close();
+        return 1;
+    }
+    return 0;
 }

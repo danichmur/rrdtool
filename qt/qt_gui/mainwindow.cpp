@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initialize_ini();
     QGroupBox *group = this->findChild<QGroupBox*>("groupBox");
     group->setVisible(false);
+    std::cout << "tune\nsome.rrd\nDEL:a\nRRA#0:+10" << std::endl;
 }
 
 
@@ -26,16 +27,20 @@ void MainWindow::on_actionAll_databases_triggered()
 {
     QTextBrowser* textBrowser = this->findChild<QTextBrowser*>("textBrowser");
     textBrowser->clear();
-
-    char **list = (char **) calloc(10, sizeof(char *));
-    for(int i = 0; i < 10; i++){
-        list[i] = (char *) calloc(100, sizeof(char));
+    char **list = (char **) calloc(COUNT, sizeof(char *));
+    for(int i = 0; i < COUNT; i++){
+        list[i] = (char *) calloc(LEN, sizeof(char));
     }
     get_db_list(list);
+
     int i = 0;
-    while(strcmp(list[i], "") != 0){
+    while(strcmp(list[i], "") != 0) {
         textBrowser->append(QString::fromStdString(list[i]));
-        free(list[i++]);
+        free(list[i]);
+        i++;
+    }
+    if(i == 0){
+        textBrowser->append("Databases not found!");
     }
     free(list);
 }
@@ -56,7 +61,9 @@ void MainWindow::on_actionName_triggered()
 void MainWindow::on_actionDelete_database_triggered()
 {
     DeleteWindow *deleteWindow = new DeleteWindow();
-    deleteWindow->show();
+    if(deleteWindow->fill_cb() == 0){
+        deleteWindow->show();
+    }
 }
 
 void MainWindow::on_actionSettings_triggered()
@@ -107,4 +114,16 @@ void MainWindow::on_pbInfo_clicked()
     textBrowser->append(QString::fromStdString(list));
     free(list);
     group->setVisible(false);
+}
+
+void MainWindow::on_actionInsert_triggered()
+{
+    InsertWindow *insertWindow = new InsertWindow();
+    insertWindow->show();
+}
+
+void MainWindow::on_actionPropertis_triggered()
+{
+    SettingsWindow *settingsWindow = new SettingsWindow();
+    settingsWindow->show();
 }

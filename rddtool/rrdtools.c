@@ -10,8 +10,6 @@
 #define DB_PATH 6
 #define FILE_PATH_LEN 4096
 
-void rrdtools_info_print(rrd_info_t *, char *);
-
 void create_path(char* path, const char *db_name, const char * type){
     strcpy(path, type);
     strcat(path, db_name);
@@ -27,12 +25,6 @@ void create_path_graph(char *path, char *param){
     token = strtok(NULL, "=");
     strcat(path, token);
     free(param_new);
-}
-
-void rrdtools_info(const char *name, char *output){
-    char path[FILE_PATH_LEN];
-    create_path(path, name, get_db_path());
-    rrdtools_info_print(rrd_info_r(path), output);
 }
 
 void rrdtools_info_print(
@@ -65,11 +57,17 @@ void rrdtools_info_print(
     }
 }
 
+void rrdtools_info(const char *name, char *output){
+    char path[FILE_PATH_LEN];
+    create_path(path, name, get_db_path());
+    rrdtools_info_print(rrd_info_r(path), output);
+}
+
 int rrdtools_create(int argc, char** argv){
     char path[FILE_PATH_LEN];
     create_path(path, argv[PATH], get_db_path());
     argv[PATH] = path;
-    rrd_create(argc, argv);
+    return rrd_create(argc, argv);
 }
 
 int rrdtools_remove(const char *db_name){
@@ -100,7 +98,7 @@ size_t rrd_dump_opt_cb_fileout(const void *data, size_t len, void *user) {
 int rrdtools_dump(const char *name, FILE *file){
     char path[FILE_PATH_LEN];
     create_path(path, name, get_db_path());
-    return rrd_dump_cb_r(path, 3, rrd_dump_opt_cb_fileout, file);
+    return rrd_dump_cb_r(path, 1, rrd_dump_opt_cb_fileout, file);
 }
 
 void fetch_to_array(char *result, rrd_value_t *data,
